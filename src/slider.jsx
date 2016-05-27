@@ -14,6 +14,16 @@ var Slider = React.createClass({
       breakpoint: null
     };
   },
+  prev: function () {
+    if (this.refs.slider) {
+      this.refs.slider.changeSlide({message: 'previous'});
+    }
+  },
+  next: function () {
+    if (this.refs.slider) {
+      this.refs.slider.changeSlide({message: 'next'});
+    }
+  },
   componentDidMount: function () {
     if (this.props.responsive) {
       var breakpoints = this.props.responsive.map(breakpt => breakpt.breakpoint);
@@ -55,7 +65,7 @@ var Slider = React.createClass({
       );
     } else {
       return (
-        <InnerSlider {...settings}>
+        <InnerSlider key="slider" {...settings}>
           {this.props.children}
         </InnerSlider>
       );
